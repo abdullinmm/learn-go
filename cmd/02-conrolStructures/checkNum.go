@@ -1,9 +1,9 @@
 package main
 
-func chNum(num int) (number int) {
+func chNum(num int) (int, string) {
 	if num < 10 {
-		return num
+		return num, "Число меньше или равно 10"
 	} else {
-		return 10
+		return 10, ""
 	}
 }
