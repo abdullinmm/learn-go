@@ -13,9 +13,9 @@ type Employee struct {
 }
 
 // Метод CalculateBonus для структуры Employee
-func (e Employee) CalculateBonus(position string) float64 {
+func (e Employee) CalculateBonus() float64 {
 	// Проверяем, совпадает ли позиция сотрудника с переданной позицией
-	if e.Position == position {
+	if e.Position == "manager" {
 		// Возвращаем бонус, который составляет 10% от зарплаты
 		return (e.Salary / 100) * 10
 	}
