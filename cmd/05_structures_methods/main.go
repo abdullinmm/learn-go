@@ -10,5 +10,6 @@ func main() {
 		Position: "manager",
 	}
 
+	// возвращает сумму бонуса от зарплаты.
 	fmt.Println(emp.CalculateBonus(emp.Position))
 }
