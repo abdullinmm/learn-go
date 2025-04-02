@@ -30,7 +30,8 @@ func main() {
 			continue
 		}
 
-		fmt.Printf("Число %d четное: %t", num, utils.IsEven(num))
+		fmt.Printf("Число %d четное: %t\n", num, utils.IsEven(num))
+		fmt.Printf("Число %d положитеьное: %t", num, utils.IsPositive(num))
 		// Если ввод успешен, выходим из цикла
 		break
 	}
