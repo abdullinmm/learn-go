@@ -6,30 +6,34 @@ type Animal interface {
 	Sound() string
 }
 
-type Dog struct {
-	Voice string
-}
+type Dog struct{}
 
 // Sound implements Animal.
 func (d Dog) Sound() string {
-	return d.Voice
+	return "Гав!"
 }
 
-type Cat struct {
-	Voice string
-}
+type Cat struct{}
 
 // Sound implements Animal.
 func (c Cat) Sound() string {
-	return c.Voice
+	return "Мяу!"
+}
+
+type Cow struct{}
+
+func (cow Cow) Sound() string {
+	return "Муу!"
 }
 
 func main() {
-	dog := Dog{Voice: "Гав"} // задаем значение
-	cat := Cat{Voice: "Мяу"} // задаем значение
+	dog := Dog{} // задаем значение
+	cat := Cat{} // задаем значение
+	cow := Cow{} // задаем значение
 
-	MakeSound(dog)
-	MakeSound(cat)
+	MakeSound(dog) // Выведет: Гав!
+	MakeSound(cat) // Выведет: Мяу!
+	MakeSound(cow) // Выведет: Муу!
 }
 
 func MakeSound(a Animal) {
