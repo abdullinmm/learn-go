@@ -9,13 +9,38 @@ func main() {
 
 	s := make([]int, 10)
 
-	populate_slice(&s)
+	populateSlice(&s)
+	s1 := doubleSlice(s)
 
 	fmt.Printf("s: %v, длина = %d, емкость = %d", s, len(s), cap(s))
+	fmt.Printf("\ns: %v, длина = %d, емкость = %d", s1, len(s1), cap(s1))
 }
 
-func populate_slice(s *[]int) {
-	for i := range *s {
-		(*s)[i] = rand.Intn(100)
+func populateSlice(s *[]int) {
+
+	if s == nil {
+		fmt.Println("Срез является nil")
+		return
 	}
+
+	for i, _ := range *s {
+
+		(*s)[i] = rand.Intn(100)
+		// *s = append(*s, 100)
+	}
+}
+
+func doubleSlice(s []int) []int {
+
+	doubled := make([]int, len(s))
+	for i, num := range s {
+		doubled[i] = num * 2
+	}
+
+	if len(doubled) == 0 {
+		fmt.Println("Функция вернула пустой срез")
+		return nil
+	}
+
+	return doubled
 }
