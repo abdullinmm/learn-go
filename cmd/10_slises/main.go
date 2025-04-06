@@ -2,53 +2,42 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
+	"math/rand/v2"
+	"time"
 )
 
 func main() {
 
+	// Создаем slice
 	s := make([]int, 10)
+	// Инициализация локального генератора
+	r := rand.New((rand.NewPCG(0, uint64(time.Now().UnixNano()))))
 
-	populateSlice(&s)
-	s1, err := doubleSlice(s)
-
-	if err != nil {
-		fmt.Println(err)
+	// Заполняем случайными числами
+	if err := populateSlice(&s, r); err != nil {
+		fmt.Println("Ошибка:", err)
+		return
 	}
 
-	fmt.Printf("s: %v, длина = %d, емкость = %d", s, len(s), cap(s))
-	fmt.Printf("\ns: %v, длина = %d, емкость = %d", s1, len(s1), cap(s1))
+	fmt.Printf("Исходный slice: %v\n", s)
+
+	// Удваиваем элементы
+	doubleSlice(&s)
+	fmt.Printf("После удвоения: %v\n", s)
 }
 
-func populateSlice(s *[]int) error {
-
+func populateSlice(s *[]int, r *rand.Rand) error {
 	if s == nil {
 		return fmt.Errorf("slice is nil")
 	}
-
-	for i, _ := range *s {
-
-		(*s)[i] = rand.Intn(100)
-		// *s = append(*s, 100)
+	for i := range *s {
+		(*s)[i] = r.IntN(100)
 	}
-
-	if len(*s) == 0 {
-		return fmt.Errorf("the function returned an empty slice")
-	}
-
 	return nil
 }
 
-func doubleSlice(s []int) ([]int, error) {
-
-	doubled := make([]int, len(s))
-	for i, num := range s {
-		doubled[i] = num * 2
+func doubleSlice(s *[]int) {
+	for i := range *s {
+		(*s)[i] *= 2
 	}
-
-	if len(doubled) == 0 {
-		return nil, fmt.Errorf("the function returned an empty slice")
-	}
-
-	return doubled, nil
 }
