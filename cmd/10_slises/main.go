@@ -26,6 +26,7 @@ func main() {
 	fmt.Printf("После удвоения: %v\n", s)
 }
 
+// populateSlice заполняет слайс случайными числами от 0 до 99.
 func populateSlice(s *[]int, r *rand.Rand) error {
 	if s == nil {
 		return fmt.Errorf("slice is nil")
@@ -36,6 +37,7 @@ func populateSlice(s *[]int, r *rand.Rand) error {
 	return nil
 }
 
+// doubleSlice удваиваем элементы слайса
 func doubleSlice(s *[]int) {
 	for i := range *s {
 		(*s)[i] *= 2
