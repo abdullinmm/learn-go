@@ -17,5 +17,7 @@ func main() {
 
 	shape.TotalArea(circle, rectangle, triangle)
 
+	shape.AreaShapeInfo(circle)
+
 	fmt.Printf("Total area: %.2f", shape.TotalArea(circle, rectangle, triangle))
 }
